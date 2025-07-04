@@ -235,7 +235,10 @@
           <input type="email" name="Email" placeholder="Your Email" class="w-full p-3 bg-[#1f1f1f] rounded-md focus:outline-none focus:border-[#ce1840] text-white" required>
           <textarea name="Message" placeholder="Your Message" rows="5" class="w-full p-3 bg-[#1f1f1f] rounded-md focus:outline-none focus:border-[#ce1840] text-white" required></textarea>
           <button type="submit" class="w-full bg-[#ce1840] text-white p-3 rounded-md font-medium hover:bg-[#a51331] transition">Submit</button>
-            <div id="msg" class="hidden opacity-0 transition duration-500 text-green-500 font-medium mt-4"></div>
+          <div id="msg" class="hidden opacity-0 transition duration-500 text-green-500 font-medium mt-4"></div>
+          <div id="loader" class="hidden flex justify-center items-center mt-4">
+            <div class="w-8 h-8 rounded-full border-4 border-t-transparent border-[#ce1840] animate-spin"></div>
+          </div>
         </form>
       </div>
     </section>

@@ -40,18 +40,34 @@ document.getElementById("backToTop").addEventListener("click", () => {
 
 // Contact Form
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxPDhWJXQ9FaIl4lbcLk6qB0GgD3H4R-G95mMU-Ar52-zpTBIoIYD7MwkP581ybTlf4/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById("msg");
+const form = document.forms['submit-to-google-sheet']
+const msg = document.getElementById("msg");
+const loader = document.getElementById("loader");
 
- form.addEventListener('submit', e => {
+form.addEventListener('submit', e => {
   e.preventDefault();
+
+  // Show loader
+  loader.classList.remove("hidden");
+
   fetch(scriptURL, { method: 'POST', body: new FormData(form) });
-  msg.innerHTML = "Message sent successfully!";
-  msg.classList.remove("hidden");
-  msg.classList.remove("opacity-0");
-  msg.classList.add("opacity-100");
-  form.reset();
-})
+
+  // After short delay, hide loader and show message
+  setTimeout(() => {
+    loader.classList.add("hidden");
+    msg.innerHTML = "Message sent successfully!";
+    msg.classList.remove("hidden");
+    msg.classList.remove("opacity-0");
+    msg.classList.add("opacity-100");
+    form.reset();
+
+    // Fade out message after 3 seconds
+    setTimeout(() => {
+      msg.classList.add("opacity-0");
+    }, 3000);
+  }, 800);
+});
+
 
 // Tab Switcher
 const tabBtns = document.querySelectorAll(".tab-btn");

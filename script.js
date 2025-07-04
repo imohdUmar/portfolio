@@ -39,26 +39,6 @@ document.getElementById("backToTop").addEventListener("click", () => {
 });
 
 // Contact Form
-document.getElementById("contact-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  fetch(this.action, {
-    method: "POST",
-    body: new FormData(this)
-  }).then(response => {
-    if (response.ok) {
-      const msg = document.getElementById("form-message");
-      msg.classList.remove("hidden");
-      setTimeout(() => { msg.classList.remove("opacity-0"); }, 10);
-      this.reset();
-      setTimeout(() => {
-        msg.classList.add("opacity-0");
-        setTimeout(() => {
-          msg.classList.add("hidden");
-        }, 500);
-      }, 3000);
-    }
-  });
-});
 
 // Tab Switcher
 const tabBtns = document.querySelectorAll(".tab-btn");

@@ -43,20 +43,15 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxPDhWJXQ9FaIl4lbcLk6
   const form = document.forms['submit-to-google-sheet']
   const msg = document.getElementById("msg");
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-        msg.innerHTML = "Message sent successfully!"
-        msg.classList.remove("hidden");
-        msg.classList.add("opacity-100");
-        setTimeout(function(){
-          msg.innerHTML = ""
-        },5000)
-        form.reset()
-      })
-      .catch(error => console.error('Error!', error.message))
-  })
+ form.addEventListener('submit', e => {
+  e.preventDefault();
+  fetch(scriptURL, { method: 'POST', body: new FormData(form) });
+  msg.innerHTML = "Message sent successfully!";
+  msg.classList.remove("hidden");
+  msg.classList.remove("opacity-0");
+  msg.classList.add("opacity-100");
+  form.reset();
+})
 
 // Tab Switcher
 const tabBtns = document.querySelectorAll(".tab-btn");

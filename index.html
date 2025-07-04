@@ -230,14 +230,12 @@
         </div>
         
         <!-- Right Side Form -->
-        <form id="contact-form" action="https://formsubmit.co/umarkhan10002@gmail.com" method="POST" class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+        <form name="submit-to-google-sheet" class="space-y-6" data-aos="fade-up" data-aos-delay="200">
           <input type="text" name="name" placeholder="Your Name" class="w-full p-3 bg-[#1f1f1f] rounded-md focus:outline-none focus:border-[#ce1840] text-white" required>
           <input type="email" name="email" placeholder="Your Email" class="w-full p-3 bg-[#1f1f1f] rounded-md focus:outline-none focus:border-[#ce1840] text-white" required>
           <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-3 bg-[#1f1f1f] rounded-md focus:outline-none focus:border-[#ce1840] text-white" required></textarea>
-          <input type="hidden" name="_next" value="thank-you.html">
-          <input type="hidden" name="_captcha" value="false">
           <button type="submit" class="w-full bg-[#ce1840] text-white p-3 rounded-md font-medium hover:bg-[#a51331] transition">Submit</button>
-            <div id="form-message" class="hidden opacity-0 transition duration-500 text-green-500 font-medium mt-4">Message sent successfully!</div>
+            <span id="msg" class="hidden opacity-0 transition duration-500 text-green-500 font-medium mt-4"></span>
         </form>
       </div>
     </section>
@@ -264,6 +262,24 @@
 
 <!-- Your Custom Script -->
 <script src="script.js"></script>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxe0IrWaNX3iLCWDf5cGj7X5e5bpSbTyNJadqPaeTadaN7im4F2bCg6lPRYAEwsZjyc/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Message sent sucessfully"
+        setTimeout(function(){
+          msg.innerHTML = ""
+        },5000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 </body>
 </html>
 

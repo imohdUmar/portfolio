@@ -63,6 +63,7 @@ form.addEventListener('submit', e => {
 
     // Fade out message after 3 seconds
     setTimeout(() => {
+      msg.classList.remove("opacity-100");
       msg.classList.add("opacity-0");
     }, 3000);
   }, 800);
